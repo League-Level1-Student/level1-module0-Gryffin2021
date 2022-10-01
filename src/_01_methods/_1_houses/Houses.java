@@ -8,25 +8,31 @@ import org.jointheleague.graphical.robot.Robot;
  */
 
 public class Houses {
+	
+	Robot rob = new Robot();
+	
 	public void run() {
 		
 			
 		// Check the recipe to find out what code to put here
 		//1. Have a robot start on the left side of the window near the bottom. 
-		Robot rob = new Robot();
-		rob.setX(0);
-		rob.setY(0);
+		
+		rob.setX(10);
+		rob.setY(300);
+		rob.setPenWidth(10);		
 		//2. Draw a flat-topped house of height 100 with grass after it (see picture). 
-		rob.penDown();
-		rob.move(100);
-		rob.setAngle(90);
-		rob.move(20);
-		rob.setAngle(180);
-		rob.move(100);
-		rob.setAngle(90);
-		rob.move(20);
+		
 		//3. Extract the piece of code that draws the house into a method. Draw 10 houses. 
-
+		drawHouse("small");
+		drawHouse(80);
+		drawHouse(100);
+		drawHouse(120);
+		drawHouse("small");
+		drawHouse(160);
+		drawHouse("small");
+		drawHouse(200);
+		drawHouse(225);
+		drawHouse(250);
 		//4. Change the method to take (int height) as a parameter. Draw 9 houses of different heights 
 
 		//5. Make the method take a String instead of an int. 
@@ -47,5 +53,23 @@ public class Houses {
 
 		//9. Make large houses have flat roofs 
 	}
-	}	
+	
+	
+	public void drawHouse(String height) {
+		if(height.equals("small")){
+		rob.penDown();
+		rob.setSpeed(10);
+		rob.setPenColor(0,0,0);
+		rob.setAngle(0);
+		rob.move(60);
+		rob.setAngle(90);
+		rob.move(40);
+		rob.setAngle(180);
+		rob.move(60);
+		rob.setAngle(90);
+		rob.setPenColor(0, 255, 0);
+		rob.move(50);
+		} else if()
+	}
+	
 }
