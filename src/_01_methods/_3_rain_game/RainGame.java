@@ -44,7 +44,8 @@ import processing.core.PImage;
 public class RainGame extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 600;
-
+    int bean = 0;
+    int randomNumber = (int)random(0,600);
     int score = 0;
     int bucketWidth = 50;
     int bucketHeight;
@@ -60,12 +61,27 @@ public class RainGame extends PApplet {
 
     @Override
     public void setup() {
-
+    	bucket = loadImage("images/bucket.png");
+    	bucket.resize(bucketWidth, bucketHeight);
     }
 
     @Override
     public void draw() {
-
+    	background(100,100,200);
+    	image(bucket,mouseX,550);
+    	fill(0, 0, 0);
+    	textSize(16);
+    	text("Score: " + score, 20, 20);
+    	fill(0,0,255);
+    	ellipse(randomNumber, bean, 15, 15);
+    	bean += 3;
+    	if(bean >= 600){
+    		checkCatch(randomNumber);
+    		randomNumber = (int)random(0,600);
+    		bean = 0;
+    		ellipse(randomNumber, bean, 25, 25);
+        	bean += 3;
+    	}
     }
 
     static public void main(String[] args) {
