@@ -7,13 +7,29 @@ public class FlappyBird extends PApplet {
 	
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-    int birdX = 250;
-    int birdY = 300;
+    int birdX = 50;
     int birdYVelocity = -10;
+    int gravity = 1;
+    int pipeX = 799;
+    int upperPipeHeight = (int) random(100, 400);
+    int pipeGap = 135;
+    int lowerY = upperPipeHeight + pipeGap;
+    int pipeWidth = 50;
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
+     
         
+    }
+    public void pipes() {
+    	for(int i = 0; i <= 1; i ++) {
+    		pipeX -= 1;
+    		if(pipeX <= -100) {
+    			pipeX = 799;
+    			upperPipeHeight = (int) random(100, 400);
+    			lowerY = upperPipeHeight + pipeGap;
+    		}
+    	}
     }
     PImage back;
     PImage pipeBottom;
@@ -23,20 +39,37 @@ public class FlappyBird extends PApplet {
     public void setup() {
         size(width,height);
         back = loadImage("flappyBackground.jpg");
+        back.resize(WIDTH, HEIGHT);
         pipeBottom = loadImage("bottomPipe.png");
         pipeTop = loadImage("topPipe.png");
         bird = loadImage("bird.png");
         bird.resize(50,50);
+        pipeTop.resize(50, upperPipeHeight);
+        pipeBottom.resize(50, lowerY);
+        pipeBottom.resize(50, lowerY);
     }
 
     @Override
     public void draw() {
     	background(back);
-        image (pipeBottom,250,375);
-        image (pipeTop,250,-130);
-        image (bird, birdX, birdY);
-        birdY += 1;
+        image (pipeBottom,pipeX,375);
+        image (pipeTop,pipeX,-130);
+        image (bird, birdX, birdYVelocity + gravity);
+        pipeTop.resize(50, upperPipeHeight);
+        pipes();
+        if(mousePressed) {
+        	gravity -= 3;
+        }else {
+        	gravity += 2;
+        }
     }
+    boolean intersectsPipes() { 
+        if (birdYVelocity < upperPipeHeight && birdX > pipeX && birdX < (pipeX+pipeWidth)){
+           return true; }
+       else if (birdYVelocity>lowerY && birdX > pipeX && birdX < (pipeX+pipeWidth)) {
+           return true; }
+       else { return false; }
+}
 
     static public void main(String[] args) {
         PApplet.main(FlappyBird.class.getName());
