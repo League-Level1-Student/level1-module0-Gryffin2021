@@ -10,14 +10,15 @@ import org.jointheleague.graphical.robot.Robot;
 
 public class TooManyShapes {
 	static Robot rob = new Robot();
-
 	public static void main(String[] args) {
 		//1. Ask the user how many sides they want their shape to be
-		
+		String q1 = JOptionPane.showInputDialog("How many sides would you like on your shape?");
+		int q12 = Integer.parseInt(q1);
 		//2. Ask the user how many shapes they want
-		
+		String q2 = JOptionPane.showInputDialog("How many shapes would you like?");
+		int q22 = Integer.parseInt(q2);
 		//3. Call canMakeShape() and save what is returned into a variable
-		
+		boolean cms = canMakeShape(q12);
 		//4. If the shape CAN be drawn
 		
 			//5. Call and save what is returned from calculateTurnAngle()

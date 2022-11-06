@@ -15,10 +15,11 @@ public class FlappyBird extends PApplet {
     int upperPipeHeight = (int) random(100, 400);
     int pipeGap = 135;
     int lowerY = upperPipeHeight + pipeGap;
-    int pipeWidth = 50;
+    int pipeWidth = 120;
     int score = 0;
     boolean endGame = false;
-    String beans = "SCORE: " + score ;
+    String s = "SCORE: " + score ;
+    
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
@@ -32,6 +33,8 @@ public class FlappyBird extends PApplet {
     			pipeX = 799;
     			upperPipeHeight = (int) random(100, 400);
     			lowerY = upperPipeHeight + pipeGap;
+    			score += 1;
+            	s = "SCORE: " + score ;
     		}
     	}
     }
@@ -59,7 +62,7 @@ public class FlappyBird extends PApplet {
         image (pipeBottom,pipeX,375);
         image (pipeTop,pipeX,-130);
         image (bird, birdX, birdY + gravity);
-        text(beans, 25, 25);
+        text(s, 25, 25);
         pipeTop.resize(50, upperPipeHeight);
         pipes();
         if(mousePressed) {
@@ -72,7 +75,7 @@ public class FlappyBird extends PApplet {
         	System.exit(0);
         }else {
         	endGame = false;
-        	score += 1;
+        	
         }
  
     }
@@ -81,7 +84,9 @@ public class FlappyBird extends PApplet {
            return true; }
        else if (birdY > lowerY && birdX > pipeX && birdX < (pipeX+pipeWidth)) {
            return true; }
-       else { return false; }
+       else { 
+
+    	   return false; }
 }
     
 

@@ -14,23 +14,28 @@ import org.jointheleague.graphical.robot.Robot;
 public class FinishLine {
 	static Robot rob = new Robot("mini");
 	static int totalDistance;
-	
+	static int TotalDistance = totalDistance;
+	static boolean hcfl = hasCrossedFinishLine();		
 	public static void main(String[] args) {
 		//1. Call the drawFinishLine() method
-		
+		drawFinishLine();
 		//2. Call the crazyMove() method to move the robot
-		
+		crazyMove();
 		//3. Call the getTotalDistance() and save what is returned into a variable
+		getTotalDistance();
 		
 		//4. Call the hasCrossedFinishLine() method and save what is returned into a variable
-		
+		hcfl = hasCrossedFinishLine();	
 		//5. If the robot has crossed the finish line... 
-			
+			if(hcfl == true) {
 			//6. Use a pop up to say the robot finished and how far it went
-		
-		
+				TotalDistance = totalDistance;
+				JOptionPane.showMessageDialog(null, "The robot finished! It went " + TotalDistance + " meters!");
+			}else if(hcfl == false){
 		//7. Else use a pop up to say the robot did not finish and how far it went
-		
+				TotalDistance = totalDistance;
+				JOptionPane.showMessageDialog(null, "The robot didn't finish! It went " + TotalDistance + " meters!");
+			}
 	}
 	
 	static void crazyMove() {
